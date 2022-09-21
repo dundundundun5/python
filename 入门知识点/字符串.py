@@ -26,3 +26,27 @@ print("%.2f" % 11.345)
 print(f"我的年龄是{age}, 名字是{namae}")
 # 对表达式进行格式化+++++++++++++++++++++++++++++++++++++++
 print("fuck you %s %s" % ("114" + "514", type(114514)))
+# 字符串是字符的容器 同列表一样支持各种下表
+my_str = "cao1ni1ma1le1ge1bi1ac"
+value = my_str[10]
+print(value)
+# 字符串无法修改
+# my_str[2] = "h"
+# index()
+print("ni的位置在", my_str.index("ni"))
+# 字符串替换 其实是得到一个新的字符串
+new_str = my_str.replace("ma", "**")
+print(new_str)
+# 字符串的分割，得到一个列表对象
+new_list = my_str.split("1")
+print(new_list)
+# 字符串的掐头去尾
+new_str = my_str.strip()
+print(new_str)
+# 取出前后的"ca" "ac"
+new_str = my_str.strip("ca")
+print(new_str)
+# 计算某个字符的出现次数
+print("a的出现次数是%d" % my_str.count("a"))
+# len依然可以计算字符串长度
+print(len(new_str))
