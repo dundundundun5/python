@@ -47,8 +47,8 @@ print(f"{name_list}, {element}")
 # 删除元素在列表中的第一个匹配项
 name_list.remove(114514)
 print(name_list)
-# 统计元素的数量
 name_list.append(True)
+# 统计元素的数量
 print(name_list.count(True))
 # 清空列表
 # name_list.clear()
