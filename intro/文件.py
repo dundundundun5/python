@@ -5,6 +5,8 @@
 f = open("F:\\python\\intro\\文件.py", mode="r", encoding="UTF-8")
 # 读取5个字符 读写指针后移5个字符
 # print(f.read(5))
+# 读取全部内容
+# print(f.read())
 # readlines() 读取所有行
 # 读取文件 readline() 读取从当前读写指针开始的一行所有内容
 # print(f.readline())

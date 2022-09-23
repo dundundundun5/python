@@ -28,8 +28,7 @@ print(f"我的年龄是{age}, 名字是{namae}")
 print("fuck you %s %s" % ("114" + "514", type(114514)))
 # 字符串是字符的容器 同列表一样支持各种下表
 my_str = "cao1ni1ma1le1ge1bi1ac"
-# 计数
-print(my_str.count("c"))
+
 value = my_str[10]
 print(value)
 # 字符串无法修改
