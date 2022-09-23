@@ -10,4 +10,12 @@ the process of automatically extracting interesting and useful hidden patterns f
 2. 人工智能
 3. 数据仓库
 
-## 
+数据挖掘是用来发现规律的，而不是发明规律
+## 数据预处理
+最有挑战性的部分
+## 分类问题 classifying
+划分边界
+## 聚类问题 clustering
+分成一个一个簇
+
+
