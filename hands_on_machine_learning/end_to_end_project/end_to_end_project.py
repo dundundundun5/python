@@ -1,4 +1,5 @@
 import matplotlib
+import scipy.sparse
 import sklearn
 import sys
 
@@ -284,6 +285,7 @@ corr_matrix["median_house_value"].sort_values(ascending=False)
 print(corr_matrix)
 # =================================检测数据相关性的方法1=====================================
 from pandas.plotting import scatter_matrix
+
 # 创建含有列名的列表
 attributes = ["median_house_value", "median_income", "total_rooms", "housing_median_age"]
 # pandas.plotting.scatter_matrix将绘制 输入属性个数**2个图，用以展示列之间的相关性（此处4个属性总共是16个图）
@@ -307,60 +309,77 @@ print(corr_matrix)
 # =================================检测数据相关性的方法3=====================================
 # "median_house_value"是标签，也就是需要预测的值，而承载机器学习算法的模型需要靠特征训练，所以要把标签和特征分开
 # 从分层抽样的训练集中获取丢弃了标签所在列的余下dataframe axis=丢弃的是1/0 : 列/行
-housing = strat_train_set.drop("median_house_value", axis=1)
+housing: pd.DataFrame = strat_train_set.drop("median_house_value", axis=1)
 # 单独获取分层抽样训练集中的标签所在的列
-housing_labels = strat_train_set["median_house_value"].copy()
+housing_labels: pd.DataFrame = strat_train_set["median_house_value"].copy()
 # dataframe.dropna()该函数是自解释的，丢弃指定列中值为NAN的行
 # subset=column label or sequence of labels, optional
-housing.dropna(subset=["total_bedrooms"])  # option 1
-# 更加暴力的方法，丢弃整个列，而不去处理少数个的NAN
-housing.drop("total_bedrooms", axis=1)  # option 2
-# 中位数填充法，获取该列的值的中位数，其实和删除整列差别不大，但是对数据清洗是有贡献的
-median = housing["total_bedrooms"].median()  # option 3
-# dataframe.fillna()自解释的方法，对某一个列的所有NAN填充某个数字 inplace=是否就地生效
-housing["total_bedrooms"].fillna(median, inplace=True)
+# housing.dropna(subset=["total_bedrooms"])  # option 1
+# # 更加暴力的方法，丢弃整个列，而不去处理少数个的NAN
+# housing.drop("total_bedrooms", axis=1)  # option 2
+# # 中位数填充法，获取该列的值的中位数，其实和删除整列差别不大，但是对数据清洗是有贡献的
+# median = housing["total_bedrooms"].median()  # option 3
+# # dataframe.fillna()自解释的方法，对某一个列的所有NAN填充某个数字 inplace=是否就地生效
+# housing["total_bedrooms"].fillna(median, inplace=True)
 
-# =================================异常值的处理方法=====================================
+# =================================异常值的统一处理方法=====================================
 from sklearn.impute import SimpleImputer
 
+# sklearn.impute.SimpleImputer
+# strategy=空值填充策略mean、median、most_frequent、constant
 imputer = SimpleImputer(strategy="median")
-
+# 因为文本没有中位数，故先获取只有数字的dataframe
 housing_num = housing.drop("ocean_proximity", axis=1)
+# SimpleImputer.fit()可以计算矩阵缺失的相关值的大小（统计时将排除某列的nan行），以便填充其他缺失数据矩阵时进行使用。
 imputer.fit(housing_num)
-# print(housing_num.median().values)
-# print(imputer.statistics_)
-
-X = imputer.transform(housing_num)
-housing_tr = pd.DataFrame(X, columns=housing_num.columns, index=housing.index)
-# print(housing_tr.loc[sample_incomplete_rows.index.values])
-
-housing_cat = housing[["ocean_proximity"]]
-# print(housing_cat.head(10))
-
+# 查看每个数字列的中位数，检查其是否与SimpleImputer类计算中位数保持一致
+print(housing_num.median().values)
+# 显示SimpleImputer.statistics_，表示计算好的相关值（相关值向量）
+print(imputer.statistics_)
+# 计算完毕后，对数字列的nan进行填充，此处赋值给X是因为转换后需要用变量接受返回值
+# housing_num目前还是存在nan的，而X是一个np.ndarray，是一个二维数组
+# 丢失了列的名称但某些列种原本为nan的行已被相关值填充
+X: np.ndarray = imputer.transform(housing_num)
+# 由于返回值是np.ndarray还需把填充好后的数字列转换为dataframe
+housing_tr: pd.DataFrame = pd.DataFrame(X, columns=housing_num.columns, index=housing.index)
+# =================================数字缺失值的处理方法（sklearn自带）=====================================
+# 获取文本列，此处传入列表或字符串
+# 传入字符串返回值是series，传入列表（即使列表里只有一个字符串）返回值是dataframe
+housing_cat: pd.Series = housing[["ocean_proximity"]]
+print(housing_cat.head(10))
+# 导入sklearn.preprocessing.OrdinalEncode 用于普通的分类编码
+# 但是各编码之间是存在距离远近（而不是距离一致相等）
 from sklearn.preprocessing import OrdinalEncoder
 
-ordinal_encoder = OrdinalEncoder()
-housing_cat_encoded = ordinal_encoder.fit_transform(housing_cat)
-# print(housing_cat_encoded[:10])
-# print(ordinal_encoder.categories_)
-
+# 新建编码对象
+ordinal_encoder: OrdinalEncoder = OrdinalEncoder()
+# 获取编码后的数组 np.ndarray
+housing_cat_encoded: np.ndarray = ordinal_encoder.fit_transform(housing_cat)
+# 类型为数组，所以只能利用np.ndarray[column_st:column_ed, row_st:row_ed]语法来获取行
+print(housing_cat_encoded[:10])
+# 被编码的某一列有多少种类别的字符串
+print(ordinal_encoder.categories_)
+# =================================文本属性值的编码方法1=====================================
+# 独热编码简介 : [认知男生理男,认知男生理女,认知女生理女,认知女生理男]
+# 独热编码结果: [0001, 0010, 0100, 1000] 类别 = 位数
 from sklearn.preprocessing import OneHotEncoder
 
-cat_encoder = OneHotEncoder()
+# 独热编码类对象创建
+cat_encoder: OneHotEncoder = OneHotEncoder()
 # 稀疏数组：数字位置的统计方法改变，
 # 不再是按每个单元格个统计，而是只统计值有效的单元格
+# 类型是稀疏矩阵scipy.sparse.csr_matrix
 housing_cat_1hot = cat_encoder.fit_transform(housing_cat)
-# print(housing_cat_1hot.toarray())
-# print(type(housing_cat_1hot))
-
+# 稀疏矩阵转化为数组 np.ndarray
+print(housing_cat_1hot.toarray())
+# =================================文本属性值的编码方法2=====================================
 from sklearn.base import BaseEstimator, TransformerMixin
 
-# column index
-# rooms_ix, bedrooms_ix, population_ix, households_ix = 3, 4, 5, 6
-# Note that I hard coded the indices (3, 4, 5, 6)
-# for concision and clarity in the book,
-# but it would be much cleaner to get them dynamically, like this:
-
+# 下面定义一个自动转换器，自动根据现有列生成一些额外列，额外列是现有列之间运算得到的结果
+# option 1 因为在dataframe-housing变量的可视化显示里，列号是从0开始计数的
+# total_rooms,total_bedrooms, population, households分别在3、4、5、6列
+rooms_ix, bedrooms_ix, population_ix, households_ix = 3, 4, 5, 6
+# option 2
 col_names = ["total_rooms", "total_bedrooms", "population", "households"]
 
 
@@ -371,29 +390,41 @@ def get_column(data: list) -> list:
     return res
 
 
-[rooms_ix, bedrooms_ix, population_ix, households_ix] = get_column(col_names)
+[rooms_ix, bedrooms_ix, population_ix, households_ix] = get_column(col_names)  # type: int
+
+# option 3 for的高级用法 目前还没学会
+rooms_ix, bedrooms_ix, population_ix, households_ix = [
+    housing.columns.get_loc(c) for c in col_names
+]
 
 
-# rooms_ix, bedrooms_ix, population_ix, households_ix = [
-#     housing.columns.get_loc(c) for c in col_names
-# ]
-
-# print(rooms_ix, bedrooms_ix, population_ix, households_ix)
-
-
+# 转换器类 继承TransformerMixin类是为了覆盖fit_transform()方法
+# 不继承也毫无影响
 class CombinedAttributesAdder(BaseEstimator, TransformerMixin):
 
-    def __init__(self, add_bedrooms_per_room=True):  # no *args or **kargs
+    def __init__(self, add_bedrooms_per_room=True):
+        """
+        转换类构造函数
+        :param add_bedrooms_per_room: 是否添加列名="每套房卧室数量"
+        """
+        # 这是一个临时定义的对象属性的（局部？）变量，用于告知transform函数是否要加上列名="每套房卧室数量"
         self.add_bedrooms_per_room = add_bedrooms_per_room
 
     def fit(self, X, y=None):
+        """
+        没有任何意义的函数
+        :param X:
+        :param y:
+        :return:
+        """
         return self  # nothing else to do
 
-    def transform(self, X):
-        room_per_household = X[:, rooms_ix] / X[:, households_ix]
-        population_per_household = X[:, population_ix] / X[:, households_ix]
+    def transform(self, X: np.ndarray):
+        room_per_household: np.ndarray = X[:, rooms_ix] / X[:, households_ix]
+        population_per_household: np.ndarray = X[:, population_ix] / X[:, households_ix]
         if self.add_bedrooms_per_room:
-            bedrooms_per_room = X[:, rooms_ix] / X[:, households_ix]
+            bedrooms_per_room: np.ndarray = X[:, rooms_ix] / X[:, households_ix]
+            # np.c_[matrix1, matrix2, ...] 要求行数相等，按列叠加多个矩阵（列向量也算）
             return np.c_[X, room_per_household, population_per_household, bedrooms_per_room]
         else:
             return np.c_[X, room_per_household, population_per_household]
@@ -412,65 +443,76 @@ attr_addr = CombinedAttributesAdder(add_bedrooms_per_room=False)
 housing_extra_attribs = attr_addr.transform(housing.values)
 
 # print(type(housing_extra_attribs))
-# 重新封装为pandas.DataFrame
+# 因为np.c_[]返回的是np.ndarray，将原本dataframe的列名模糊成了数字索引，故
+# 需要重新封装为pandas.DataFrame
+
 housing_extra_attribs = pd.DataFrame(
-    housing_extra_attribs,
+    housing_extra_attribs, # data=ndarray (structured or homogeneous), Iterable, dict, or DataFrame
+    # columns=[column_name1, column_name2, ...]
     columns=list(housing.columns) + ["room_per_household", "population_per_household"],
+    # index=Index or array-like
     index=housing.index
 )
-# print(type(housing_extra_attribs))
-# print(housing_extra_attribs)
-
+print(housing_extra_attribs.head(20))
+# =================================自定义转换器=====================================
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
-# 数据缩放、转换流水线类
+# 数字转换流水线类
+# 会根据列表内的元组，对所有数字列进行流水线级转换，
 num_pipeline = Pipeline([
     ("imputer", SimpleImputer(strategy="median")),
     ("attribs_adder", CombinedAttributesAdder()),
     ("std_scaler", StandardScaler()),
 ])
-
-housing_num_tr = num_pipeline.fit_transform(housing_num)
-
+# 拟合并转换
+housing_num_tr:pd.DataFrame = num_pipeline.fit_transform(housing_num)
+# =================================使用sklearn的数字转换流水线类=====================================
 from sklearn.compose import ColumnTransformer
 
 # 能够处理所有列的转换器
-num_attribs = list(housing_num)
+# 单独获取数字列的列名称组成的列表（对dataframe进行list类型转换能获取？）
+num_attribs: list = list(housing_num)
+# 单独获取文本列的列名称组成的列表
 cat_attribs = ["ocean_proximity"]
-
+# 对数字列和文本列分别是施加流水线
+# 格式为 ColumnTransformer(元组列表)
+# 元组列表=[("任意名称",转换器,转换列的列名组成的列表), (...), (...), ...]
 full_pipeline = ColumnTransformer([
     ("num", num_pipeline, num_attribs),
     ("cat", OneHotEncoder(), cat_attribs),
 ])
-
+# 使用统一流水线函数对所有列进行转换
 housing_prepared = full_pipeline.fit_transform(housing)
-# print(housing_prepared)
-
+print(housing_prepared)
+# =================================使用sklearn的统一转换流水线类=================================
 # 训练线性回归模型
 from sklearn.linear_model import LinearRegression
-
+# 创建一个空白的线性回归模型
 lin_reg = LinearRegression()
+# fit(统一转换流水线处理后的特征向量们，训练集的的标签（房价中位数）) 对模型进行拟合
 lin_reg.fit(housing_prepared, housing_labels)
-
-some_data = housing.iloc[:5]
-some_labels = housing_labels.iloc[:5]
-# 用转换流水线处理部分数据
+# 从训练集种拿出部分数据
+some_data: pd.DataFrame = housing.iloc[:5]
+some_labels: pd.DataFrame = housing_labels.iloc[:5]
+# 用统一转换流水线处理部分数据
 some_data_prepared = full_pipeline.transform(some_data)
-# print("Predictions:", lin_reg.predict(some_data_prepared))
-# print("Labels:", list(some_labels))
+print("Predictions:", lin_reg.predict(some_data_prepared))
+print("Labels:", list(some_labels))
 
 # 衡量模型的RMSE均方根误差
 from sklearn.metrics import mean_squared_error
 
 housing_predictions = lin_reg.predict(housing_prepared)
+# 均方误差
 lin_mse = mean_squared_error(housing_labels, housing_predictions)
+# 均方根误差
 lin_rmse = np.sqrt(lin_mse)
-# print(lin_rmse)
+print(lin_rmse)
 
 # 直接获取RMSE
 # lin_rmse = mean_squared_error(housing_labels, housing_predictions, squared=False)
-
+# =================================线性回归模型的拟合、预测、评估=================================
 # 获取平均绝对误差
 from sklearn.metrics import mean_absolute_error
 
@@ -493,9 +535,10 @@ tree_rmse = np.sqrt(tree_mse)
 
 from sklearn.model_selection import cross_val_score
 
-# 产生一个包含10次评估分数的数组
+# 利用10折交叉验证产生一个包含10次评估分数的数组
 scores = cross_val_score(tree_reg, housing_prepared, housing_labels,
                          scoring="neg_mean_squared_error", cv=10)
+# sklearn生成负的MSE函数
 tree_rmse_scores = np.sqrt(-scores)
 
 
