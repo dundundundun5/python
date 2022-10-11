@@ -56,32 +56,6 @@ $$ J(w,b)=\frac1{2m}\sum_{i=1}^{m}({f_{w,b}(x^{(i)})}-y^{(i)})^2$$ (2)
 * 伪代码
 
     ```f=np.dot(w,x)+b```
-## 梯度下降算法
-用于最小化任何函数
-$$\min{J(w_1,w_2,w_3,...,w_n,b)} $$
-
-* 说人话
-
-对于某个选定的点所表示的函数值，探索“当自变量变化时，函数值下降最快的变化路径
-*  编程层面的算法（伪代码）
-$$依据全体示例，分别对所有w_1,w_2,\cdots,w_n依次求偏导，算出他们各自的梯度下降后的值$$
-$$repeat({\vec w,b}未收敛)\downdownarrows\\
-
-w_j=w_j-\alpha\frac{\partial{J(\vec w,b)}}{\partial{w_j}}=w_j-\alpha\frac{1}{m}\sum_{i=1}^{m}(f_{\vec{w},b}(\vec{x}^{(i)})-y^{(i)})x_j^{(i)} \\
-w_j\qquad1\leq{j}\leq{n}\\ \overbrace{w_1, w_2, \cdots, w_n} \\
-b=b-\alpha\frac{\partial{J(\vec w,b)}}{\partial{b}}=b-\alpha\frac{1}{m}\sum_{i=1}^{m}(f_{\vec{w},b}(\vec{x}^{(i)})-y^{(i)})$$
-其中$\alpha\longrightarrow学习率$，其控制梯度下降的速度，学习率太小导致梯度下降不明显，学习率过大导致梯度变化幅度过大从而无法获取最优解
-
-* 批量梯度下降的概念
-
-在梯度下降算法执行的过程中，计算包括所有实例$(\hat y^{(i)}, y^{(i)})$的代价函数
-* 检测收敛的方法
-
-    建立代价函数和迭代次数的函数关系 
-    $$J(\vec w,b)\rightleftarrows iterations $$
-    同时从小到大调整学习率
-## 正规方程
-用于求解线性多项式系数的一种方法，无笔记
 ## 特征缩放（归一化）
 * 原因
 
