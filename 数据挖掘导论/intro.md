@@ -1,10 +1,13 @@
 # 概述
-
 Data rich, information poor
 ## 学习方法
 网课<https://www.bilibili.com/video/BV154411Q7mG/?vd_source=b0f0f1dd662e0b8e465dde7dee2d07d7>
 网络资料：博客园、简书、CSDN、知乎
 学校实验平台<http://172.20.129.6:7709/#/login>
+## 复习方法
+笔记书写：VSCode with plugin "Markdown All in One"
+
+latex语法写公式和markdown语法写基础排版，不考虑格式问题
 ## 数据挖掘
 the process of automatically extracting interesting and useful hidden patterns from usually massive, incomplete and noisy data
 自动从复杂大量不完整数据中提取隐藏信息结构的过程
