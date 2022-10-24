@@ -75,4 +75,5 @@ class Phone:
 
     def __say(self):
         print()
+# 单下划线是protected
 # 双下划线相当于private 编程思想与C++、Java保持一致

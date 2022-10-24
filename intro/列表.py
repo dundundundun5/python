@@ -60,5 +60,10 @@ while idx < len(name_list):
 print()
 # for 第一种遍历
 for i in name_list:
-    print(f"{name_list[i]}, ", end='')
+    print(f"{i}, ", end='')
 print()
+# 列表统一赋值
+initial_value, n = 11451, 4
+l = []
+l = [initial_value for i in range(n)]
+print(l)
