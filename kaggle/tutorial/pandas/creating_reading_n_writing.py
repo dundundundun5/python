@@ -13,6 +13,8 @@ a = pd.Series([1, 2, 3, 4, 5])
 a = pd.Series([1, 2, 3, 4, 5], name="Product A")
 
 # pd.read_csv(filepath)读取数据文件
+# pd.read_csc() index_col可以直接将某列作为索引
+# 取而代之，df.set_index()也可以达到相同的目的
 data = pd.read_csv("../../input/titanic/test.csv")
 # df.shape返回（行，列）
 print(data.shape)

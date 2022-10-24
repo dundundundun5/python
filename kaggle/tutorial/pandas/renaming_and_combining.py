@@ -13,6 +13,8 @@ data_concated = pd.concat([data, data_test])
 # 用赋值运算符重设index值
 # data_concated.index = data_concated.reset_index().index
 print(data_concated)
+
+
 # join可以合并两个数据集，按一或多个标签索引后，可以合并查看两个数据集的对照信息
 # 设置双标签（类似groupby的双标签分组）
 left = data.set_index(['Sex','Pclass'])

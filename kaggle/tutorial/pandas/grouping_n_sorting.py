@@ -30,8 +30,13 @@ print(data_grouped.head())
 # 数据排序 by:标签 ascending：True升序False降序
 data_sorted = data.sort_values(by='Fare', ascending=False)
 print(data_sorted.head())
-# 按索引排序
+# 按索引排序,如果分组出来的索引是成绩，即按成绩排序
 print(data.sort_index().head())
 # 数据排序多排序，传入列表即可
 data_sorted = data.sort_values(by=['Fare', 'PassengerId'], ascending=False)
 print(data_sorted.head())
+
+# size()可以统计每个分组内的示例数
+# 单标签时，还可以用data.groupby(['Pclass']).Pclass.count()
+# 多标签时只能用gp.size()
+print(data.groupby(['Sex','Pclass']).size())

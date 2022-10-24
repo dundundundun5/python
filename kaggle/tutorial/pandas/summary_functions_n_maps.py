@@ -11,7 +11,9 @@ print(data.Age.mean())
 print(data.Cabin.unique())
 # 查看值的每个种类的出现次数
 print(data.Pclass.value_counts())
-
+# idxmax()将统计列标签的最大值的行索引
+age_max = data.Age.idxmax()
+print(age_max)
 # map(function())计算现有列的值的线性组合，返回series
 age_mean = data.Age.mean()
 age_new = data.Age.map(lambda a: a - age_mean)
