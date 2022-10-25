@@ -53,10 +53,10 @@ some_digit_image = some_digit.reshape(28, 28)
 plt.imshow(some_digit_image, cmap=mpl.cm.binary)
 plt.axis("off")
 plt.show()
-
+# ==================================
 y = y.astype(np.uint8)
 
-
+# 画图可视化，暂不考虑
 def plot_digit(data):
     image = data.reshape(28, 28)
     plt.show(image, cmap=mpl.cm.binary, interpolation="nearest")
@@ -85,24 +85,28 @@ def plot_digits(instances, images_per_row=10, **options):
     plt.imshow(big_image, cmap=mpl.cm.binary, **options)
     plt.axis("off")
 
-
+# =========================================================
 X_train, X_test, y_train, y_test = X[:60000], X[60000:], y[:60000], y[60000:]
 
 y_train_5 = (y_train == 5)
 y_test_5 = (y_test == 5)
-
+# 随机梯度下降分类器
 from sklearn.linear_model import SGDClassifier
-sgd_clf =  SGDClassifier(max_iter=1000, tol=1e-3, random_state=42)
+
+sgd_clf = SGDClassifier(max_iter=1000, tol=1e-3, random_state=42)
 sgd_clf.fit(X_train, y_train_5)
 sgd_clf.predict([some_digit])
-
+# ===============================================
 from sklearn.model_selection import cross_val_score
 cross_val_score(sgd_clf, X_train, y_train_5, cv=3, scoring="accuracy")
-
+# 使用分层抽样在训练集中手动分割并交叉验证
 from sklearn.model_selection import StratifiedKFold
 from sklearn.base import clone
+# 分层抽样后的折叠集合
 skfolds = StratifiedKFold(n_splits=3, shuffle=True, random_state=42)
+# 手动交叉验证
 for train_index, test_index in skfolds.split(X_train, y_train_5):
+
     clone_clf = clone(sgd_clf)
     X_train_folds = X_train[train_index]
     y_train_folds = y_train_5[train_index]
@@ -113,11 +117,84 @@ for train_index, test_index in skfolds.split(X_train, y_train_5):
     y_pred = clone_clf.predict(X_test_fold)
     n_correct = sum(y_pred == y_test_fold)
     print(n_correct / len(y_pred))
-
+# 使用cross_val_score()验证
 from sklearn.base import BaseEstimator
-class Never5Classfier(BaseEstimator):
-    def fit(self,X, y=None):
+# 创建一个结果为全非的分类器，设定为准确率
+class Never5Classifier(BaseEstimator):
+    def fit(self, X, y=None):
         pass
     def predict(self, X):
-        return np.zeros((len(X),1), dtype=bool)
-b
+        return np.zeros((len(X), 1), dtype=bool)
+never_5_clf = Never5Classifier()
+# 该分类器准确率很高，但明显没有泛化能力
+cross_val_score(never_5_clf, X_train, y_train_5, cv=3, scoring="accuracy")
+# =================================
+# 混淆矩阵评估分类器
+# 使用k折交叉预测获取训练集的预测，从而计算训练集的混淆矩阵
+from sklearn.model_selection import cross_val_predict
+y_train_pred = cross_val_predict(sgd_clf, X_train, y_train_5, cv=3)
+# 混淆矩阵
+from sklearn.metrics import confusion_matrix
+print(confusion_matrix(y_train_5, y_train_pred))
+# 假装全对了
+y_train_perfect_predictions = y_train_5
+confusion_matrix(y_train_5, y_train_perfect_predictions)
+# ======================================
+# 召回率（敏感度）：实际为正实例中预测为正的比率 阳性检测出阳的概率
+# 精度： 预测为正实例中实际为正的比率
+from sklearn.metrics import precision_score, recall_score
+# 函数获取精度\召回率
+precision_score(y_train_5, y_train_pred)
+recall_score(y_train_5, y_train_pred)
+# F1分数 =... p93 是精度召回率的谐波平均值
+from sklearn.metrics import f1_score
+f1_score(y_train_5, y_train)
+# 混淆矩阵验证精度召回率f1
+cm = confusion_matrix(y_train_5, y_train_pred)
+cm[1, 1] / (cm[0, 1] + cm[1, 1])
+cm[1, 1] / (cm[1, 0] + cm[1, 1])
+cm[1, 1] / (cm[1, 1] + (cm[1, 0] + cm[0, 1]) / 2)
+# ==============================
+# 精度召回率权衡：决策边界的调整 P93
+#  decision_function返回实例的分数，
+y_scores = sgd_clf.decision_function([some_digit])
+# sgdclf默认阈值为0，阈值设置为与默认一致
+threshold = 0
+y_some_digit_pred = (y_scores > threshold)
+# 再设置
+threshold = 8000
+y_some_digit_pred = (y_scores > threshold)
+# 获取训练集所有实例的分数，来决定使用什么阈值
+# 返回的是实例分数而不是预测见过
+y_scores = cross_val_predict(sgd_clf, X_train, y_train_5, cv=3
+                             ,method='decision_function')
+# 计算所有可能的阈值的精度召回率
+from sklearn.metrics import precision_recall_curve
+precisions, recalls, thresholds = precision_recall_curve(y_train_5, y_scores)
+# 作图代码省略
+# 获取90精度的门限
+# np.argmax()返回列表中最大值的索引值
+threshold_90_precision = thresholds[np.argmax(precisions >= 0.90)]
+y_train_pred_90= (y_scores >= threshold_90_precision)
+precision_score(y_train_5, y_train_pred_90)
+recall_score(y_train_5, y_train_pred_90)
+# ====================================
+# ROC曲线 召回率和fpr关系
+# fpr + tnr = 1
+# fpr实际为假中被预测为真的比例 误报率 阴性查出阳性的概率
+# tnr特异度预测为假中实际为假的比例 阴性检测出阴性的概率
+# auc线下面积越大越好 最大为1
+from sklearn.metrics import roc_curve
+fpr, tpr, thresholds = roc_curve(y_train_5, y_scores)
+# 作图代码神略
+# 获取roc线下面积
+from sklearn.metrics import roc_auc_score
+roc_auc_score(y_train_5, y_scores)
+# =======================================
+# 多分类器 p100
+from sklearn.svm import SVC
+
+svm_clf = SVC(gamma="auto", random_state=42)
+svm_clf.fit(X_train[:1000], y_train[:1000]) # y_train, not y_train_5
+svm_clf.predict([some_digit])
+some_digit_scores = svm_clf.decision_function([some_digit])
