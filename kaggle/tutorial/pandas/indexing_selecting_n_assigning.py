@@ -56,3 +56,7 @@ id_temp = data_temp.loc[:,'PassengerId']
 data_temp['PassengerId'] = range(id_temp[len(data) - 1], id_temp[0] - 1,-1)
 # 此时最后一行PassengerId为892
 print(data_temp.iloc[[-2,-1,0],:])
+
+# 对某一列的数值进行条件赋值
+# 选择Sex列并将所有为male的赋值1，否则赋值0
+data.loc[:, 'Sex'] = (data.Sex == 'male').astype(int)

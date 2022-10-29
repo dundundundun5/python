@@ -10,8 +10,9 @@ print(data.Age.mean())
 # 查看值的种类，返回列表
 print(data.Cabin.unique())
 # 查看值的每个种类的出现次数
+# 返回pd.series
 print(data.Pclass.value_counts())
-# idxmax()将统计列标签的最大值的行索引
+# idxmax()将统计series中的的最大值的行索引
 age_max = data.Age.idxmax()
 print(age_max)
 # map(function())计算现有列的值的线性组合，返回series
