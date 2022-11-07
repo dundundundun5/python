@@ -1,7 +1,9 @@
 import pandas as pd
-import numpy as np
 
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 train_path = "./input/titanic/train.csv"
+
 test_path = "./input/titanic/test.csv"
 train_data = pd.read_csv(train_path)
 test_data = pd.read_csv(test_path)
@@ -91,13 +93,22 @@ features_need_scaled = ['Fare', 'Age']
 
 X = implement_minmax_scaler(X, features_need_scaled)
 test_X = implement_minmax_scaler(test_X, features_need_scaled)
-# 训练一个简单的决策树分类器
-from sklearn.tree import DecisionTreeClassifier
+a = X.shape
+from sklearn.model_selection import train_test_split
+X, valid_X, y, valid_y = train_test_split(X, y)
 
-tree_model = DecisionTreeClassifier(random_state=20)
-tree_model.fit(X, y)
-test_y = tree_model.predict(test_X)
+from tensorflow import keras
+mlp_model = keras.models.Sequential([
+    keras.layers.InputLayer(input_shape=[X.shape[1]]),
+    keras.layers.Dense(30, activation='relu'),
+    keras.layers.Dense(20, activation='relu'),
+    keras.layers.Dense(10, activation='softmax')
+])
+mlp_model.compile(loss='sparse_categorical_crossentropy',optimizer='sgd',metrics=['accuracy'])
+history = mlp_model.fit(X, y, epochs=30,validation_data=(valid_X, valid_y))
+import numpy as np
+predictions = np.argmax(mlp_model.predict(test_X), axis=1)
 
-
-submission = pd.DataFrame({'PassengerId': test_data.PassengerId, 'Survived': test_y})
-submission.to_csv('./output/titanic/submission.csv', index=False)
+output = pd.DataFrame({'PassengerId': test_data.PassengerId, 'Survived': predictions})
+output.to_csv('./output/titanic/submission_mlp.csv', index=False)
+print("Your submission was successfully saved!")
