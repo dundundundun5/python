@@ -53,3 +53,10 @@ def getReplies(jp:JsonProcess, i):
             data = (rpid, '0', name, avatar, content)
             print(data)
 
+
+if __name__ == '__main__':
+    JP = JsonProcess()
+    getReplies(JP, 1)
+
+
+
