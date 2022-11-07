@@ -61,7 +61,7 @@ def trans_n_save(file):
     f.close()
 
 # 分p视频各有各的cid
-cid = "864474825"
+cid = "882072634"
 file = cid + ".txt"
 download_n_save(cid, file)
 trans_n_save(file)
