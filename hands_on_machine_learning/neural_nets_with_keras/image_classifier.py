@@ -1,6 +1,8 @@
 import matplotlib
 import tensorflow as tf
 from tensorflow import keras
+# import os
+# os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 #
 fashion_mnist = keras.datasets.fashion_mnist
 (X_train_full, y_train_full), (X_test, y_test) = fashion_mnist.load_data()
@@ -41,7 +43,7 @@ weights, biases = hidden1.get_weights()
 # print(biases,biases.shape)
 # 略
 #
-model.compile(loss="sparse_catogorical_crossentropy",
+model.compile(loss="sparse_categorical_crossentropy",
               optimizer='sgd', metrics=['accuracy'])
 #
 history =model.fit(X_train, y_train, epochs=30,
@@ -61,7 +63,7 @@ plt.show()
 model.evaluate(X_test, y_test)
 #
 X_new = X_test[:3]
-y_proba = model.predict[X_new]
+y_proba = model.predict(X_new)
 # print(y_proba.round(2))
 #
 # 略
