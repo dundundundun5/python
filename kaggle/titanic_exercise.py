@@ -1,8 +1,8 @@
 import pandas as pd
 import numpy as np
 
-train_path = "./input/titanic/train.csv"
-test_path = "./input/titanic/test.csv"
+train_path = "D:/temp_files/datasets/titanic/train.csv"
+test_path = "D:/temp_files/datasets/titanic/test.csv"
 train_data = pd.read_csv(train_path)
 test_data = pd.read_csv(test_path)
 print(train_data.info())

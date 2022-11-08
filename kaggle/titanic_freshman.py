@@ -6,8 +6,8 @@ import os
 for dirname, _, filenames in os.walk("./input/"):
     for filename in filenames:
         print(os.path.join(dirname, filename))
-train_data = pd.read_csv("./input/titanic/train.csv")
-test_data = pd.read_csv("./input/titanic/test.csv")
+train_data = pd.read_csv("D:/temp_files/datasets/titanic/train.csv")
+test_data = pd.read_csv("D:/temp_files/datasets/titanic/test.csv")
 
 women = train_data.loc[train_data.Sex == 'female']["Survived"]
 rate_women = sum(women)/len(women)
