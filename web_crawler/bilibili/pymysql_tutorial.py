@@ -1,7 +1,7 @@
 import pymysql
-host = 'localhost'
+host = '116.204.72.94'
 user = 'root'
-password= 'wsad12345'
+password= 'WsAd12345!'
 database = 'bilibili'
 charset = 'utf8'
 with pymysql.connect(host=host, user=user, password=password,
