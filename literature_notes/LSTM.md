@@ -17,7 +17,7 @@
 
 2. 输入门
 
-    $$f_t=\sigma(W_i\cdot[
+    $$i_t=\sigma(W_i\cdot[
         \begin{matrix}
             h_{t-1}\\x_t
         \end{matrix}
