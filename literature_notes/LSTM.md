@@ -1,4 +1,5 @@
 # 单隐藏层LSTM笔记
+
 图中的X代表按位置作乘法
 ![](https://raw.githubusercontent.com/dundundundun5/pictures/main/formal20221218125627.png)
 ![](https://raw.githubusercontent.com/dundundundun5/pictures/main/formal20221218133904.png)
