@@ -250,3 +250,12 @@ ORDER BY cust_name
 ```
     orders是在Orders表中统计行数，条件是仅当表中顾客id在Customers表中存在时才统计
 
+## 12 联结表
+由于没有学过关系表和关系数据库
+
+需要先补充 关系表和关系数据库
+
+关系表<https://blog.csdn.net/YXXXYX/article/details/123270424>
+
+ER图<https://blog.csdn.net/caohongxing/article/details/122398825>
+
