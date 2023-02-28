@@ -259,3 +259,90 @@ ORDER BY cust_name
 
 ER图<https://blog.csdn.net/caohongxing/article/details/122398825>
 
+在本例中，供应商信息表和产品信息表是多对一的关系，多个产品可以对应到一个供应商，一个产品只有一个供应商
+
+那么则需要一个外键来联系两张表，比如供应商ID
+1. 内联结
+
+    内联结又叫做等值联结
+
+```
+SELECT vend_name, prod_name, prod_price
+FROM Vendors
+INNER JOIN Products ON Vendors.vend_id = Products.vend_id
+```
+    从FROM开始，表示Vendors内联结Products,ON后的语句表示两表联结的条件
+```
+SELECT cust_name, cust_contact
+FROM Customers AS C, Orders AS O, OrderItems AS OI
+WHERE C.cust_id = O.cust_id 
+AND		OI.order_num = O.order_num
+AND 	prod_id = 'RGAN01'
+```
+    AS是表的别名
+    首先用外键联结Customers和Orders，同样用外键联结Orders和OrderItems，
+    最后在OrderItemss中提供过滤条件
+
+**联结多对一的父子表时，两张表的外键名不一定是相同的（.cust_id）** 
+2. 自联结
+
+使用表别名可以在一条SELECT中引用多次同一张表
+
+一张表与自己的联结，称为内联结
+
+这种情况下，表与自己相当于是一对一情况中的共享主键
+
+```
+SELECT C1.cust_id, C1.cust_name, C1.cust_contact
+FROM Customers AS C1, Customers AS C2
+WHERE C1.cust_name = C2.cust_name
+AND	C2.cust_contact = 'Jim Jones'
+```
+
+    首先用公司名作为联结主键，先添加筛选找到Jim Jones的公司，从而找到该公司下的所有人
+3. 自然联结
+
+标准的联结返回所有数据，相同的列会多次出现
+
+自然联结排除多次出现，要求只能选择那些唯一的列（手动选择）
+
+```
+SELECT C.*, O.order_num, O.order_date, O.cust_id,
+			OI.prod_id, OI.quantity, OI.item_price
+FROM Customers AS C, Orders AS O, OrderItems AS OI
+WHERE C.cust_id = O.cust_id 
+AND		OI.order_num = O.order_num
+AND 	prod_id = 'RGAN01'
+```
+    事实上，几乎所有内联结都是自然联结，很可能永远都不会用到非自然联结的内联结
+4. 外联结
+
+用于查看没有关联的行，比如未下订单的顾客，无人订购的产品
+
+```
+SELECT C.cust_id, O.order_num
+FROM Customers as C
+LEFT OUTER JOIN Orders AS O ON C.cust_id = O.cust_id
+```
+    检索包括了没有订单的客户
+    OUTER JOIN表示外联结 LEFT和RIGHT表示左外联结和右外联结
+    唯一差别是所关联表的顺序
+    如果是左联结，则保留左表所有的行；即使在右表中没有匹配的行
+    左右联结可以互相转换
+5. 聚集+联结
+
+    联结后的表可以用聚集函数进行统计
+```
+SELECT Customers.cust_id,COUNT(Orders.order_num) as num_prod
+FROM Customers
+INNER JOIN Orders ON Customers.cust_id = Orders.cust_id
+GROUP BY Customers.cust_id
+```
+    首先用顾客ID联结两张表，随后按顾客ID分组，对每个顾客的订单计数
+```
+SELECT Customers.cust_id,COUNT(Orders.order_num) as num_prod
+FROM Customers
+LEFT OUTER JOIN Orders ON Customers.cust_id = Orders.cust_id
+GROUP BY Customers.cust_id
+```
+    外联结同理
