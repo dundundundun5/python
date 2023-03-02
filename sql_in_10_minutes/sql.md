@@ -250,7 +250,7 @@ ORDER BY cust_name
 ```
     orders是在Orders表中统计行数，条件是仅当表中顾客id在Customers表中存在时才统计
 
-## 12 联结表
+## 12/13 联结表
 由于没有学过关系表和关系数据库
 
 需要先补充 关系表和关系数据库
@@ -346,3 +346,26 @@ LEFT OUTER JOIN Orders ON Customers.cust_id = Orders.cust_id
 GROUP BY Customers.cust_id
 ```
     外联结同理
+## 14 组合查询
+用于把多条SELECT语句合在一起形成同一条语句，
+1. UNION
+
+    规则简述：
+
+        1. 根据DBMS文档，查看UNION能组合的最大语句数目
+        2. 一个必须用于分割两段Select语句
+        3. 每个查询必须包含相同的列、表达式、聚集函数，但顺序可以不同
+        4. UNION ALL可以指定显示重复查询的（默认过滤相同的行）
+        5. 如果两个查询的列名不一样，则只有第一个会生效
+        6. ORDER BY只能在最后用一次，所以不存在两个SELECT各自排序的情况
+```
+SELECT cust_name, cust_contact, cust_email
+FROM Customers
+WHERE cust_state IN ('IL','IN','MI')
+UNION
+SELECT cust_name, cust_contact, cust_email
+FROM Customers
+WHERE cust_name = 'fun4All'
+ORDER BY cust_name, cust_contact
+```
+    由UNION连接的两组SELECT语句
