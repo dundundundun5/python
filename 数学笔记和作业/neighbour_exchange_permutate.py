@@ -1,15 +1,5 @@
 import numpy as np
-import matplotlib as mpl
-import matplotlib.pyplot as plt
-import seaborn as sns
-mpl.use("tkagg")
-def plot(arr, n, color):
-    plt.xlim(0.5, n + 0.5)
-    plt.ylim(0, n + 1)
-    plt.yticks(range(0, n + 1, 1))
-    plt.xticks(ticks=[i for i in range(1, n + 1)] ,labels=[str(i) for i in range(1, n+1)])
-    plt.bar(x=arr, width=0.5,height=[i for i in range(1, n + 1)], color=color)
-    plt.show()
+
 
 def swap_permute(arr, n):
     """
@@ -60,19 +50,38 @@ def neighbour_exchange_permute(arr, n):
 
     1. 初始全排列1234...n，并规定其元素的方向都是向左的
     指向的元素比自己小，则处于活动状态
-    2. 找到处于活动状态的最大元素x
-    3. 推土机，反复与指向的元素交换，将大于x的元素方向倒转
 
-    直至所有元素均为不活动元素
+    2. 找到处于活动状态的最大元素x
+
+    3. 与指向的元素交换，将大于x的元素方向倒转
+
+    4. 直至所有元素均为不活动元素
+
     第一个数向左，最后一个数向右，均不可移动
 
-    :param arr:
-    :param n:
+    :param arr: 数组
+    :param n: 数组的长度
     :return:
     """
     direction = [0 for i in range(n)]
-    color = [0 for i in range(n)]
+
     def is_movable(index):
+        """
+        判断下标为index的元素是否可移动
+
+        以下情况为不可移动:
+
+        1.最左的元素方向朝左
+
+        2.最右的元素方向朝右
+
+        3.朝左的元素，比左边元素小
+
+        4.朝右的元素，比右边元素小
+
+        :param index: 元素下标
+        :return: 可移动:True 反之False
+        """
         if index == 0 and direction[index] == 0:
             return False
         if index == n - 1 and direction[index] == 1:
@@ -84,21 +93,30 @@ def neighbour_exchange_permute(arr, n):
         return True
 
     def find_max_movable():
-        max_active_value = -1
-        max_active_index = -1
+        """
+
+        :return: 最大可移动元素的下标
+        """
+        max_movable_value = -1
+        max_movable_index = -1
         for i in range(n):
-            if is_movable(i) and arr[i] > max_active_value:
-                max_active_value = arr[i]
-                max_active_index = i
-        return max_active_index
+            if is_movable(i) and arr[i] > max_movable_value:
+                max_movable_value = arr[i]
+                max_movable_index = i
+        return max_movable_index
 
     # index-= 1 and index >= 1
     # index+= 1 and index <= n - 2
     def move(index):
+        """
+
+        :param index: 要移动的元素下标
+        :return: 移动完成后的元素下标
+        """
         # 如果方向向左
         if direction[index] == 0:
-            arr[index], arr[index - 1] = arr[index - 1], arr[index]
-            direction[index], direction[index - 1] = direction[index - 1], direction[index]
+            arr[index], arr[index - 1] = arr[index - 1], arr[index]  # 元素值对换
+            direction[index], direction[index - 1] = direction[index - 1], direction[index]  # 元素方向对换
             return index - 1
         else:  # 如果方向向右
             arr[index], arr[index + 1] = arr[index + 1], arr[index]
@@ -109,24 +127,25 @@ def neighbour_exchange_permute(arr, n):
         for i in range(n):
             if arr[i] > arr[index]:
                 direction[i] = 0 if direction[i] == 1 else 1
+
     def all_unmovable():
-        flag = True
+        flag = True # 默认都不可移动
         for i in range(n):
-            # 只要有一个可移动
+            # 只要有一个可移动，反转标志位
             if is_movable(i):
                 flag = False
         return flag
-    #print(arr)
-    plot(arr,n, color)
-    while True:
-        if all_unmovable():
-            break
-        i = find_max_movable()
-        i = move(i)
-        reverse_direction(i)
-        #print(arr)
+
+    # print(arr)
+    while not all_unmovable():  # 只要至少还有一个元素能移动
+        i = find_max_movable()  # 找到最大能移动的元素下标
+        i = move(i)  # 移动该元素，并更新下表指针
+        reverse_direction(i)  # 反转所有大于arr[i]的元素的方向
+        # print(arr)
         # 把比max大的所有元素移动方向反转
+
+
 # https://www.cnblogs.com/1-2-3/archive/2011/05/23/generate-permutation-part3.html
 if __name__ == '__main__':
     a = np.array([1, 2, 3])
-    neighbour_exchange_permute(a, a.shape[0])
+    swap_permute(a, a.shape[0])
