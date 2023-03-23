@@ -145,7 +145,7 @@ def neighbour_exchange_permute(arr, n):
         # 把比max大的所有元素移动方向反转
 
 
-# https://www.cnblogs.com/1-2-3/archive/2011/05/23/generate-permutation-part3.html
+
 if __name__ == '__main__':
     a = np.array([1, 2, 3])
     swap_permute(a, a.shape[0])
