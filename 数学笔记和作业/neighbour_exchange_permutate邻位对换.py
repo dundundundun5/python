@@ -94,7 +94,6 @@ def neighbour_exchange_permute(arr, n):
 
     def find_max_movable():
         """
-
         :return: 最大可移动元素的下标
         """
         max_movable_value = -1
