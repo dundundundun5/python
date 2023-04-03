@@ -112,9 +112,7 @@ def powell_search(x: np.ndarray, D, A, b=np.array([0, 0]), c=0, epochs=2):
         x = x + res_l * d
     print("最小值x*=", x)
 
-def variable_metric_search(x: np.ndarray, H:np.ndarray, A:np.ndarray, b=np.array([0, 0]), c=0, epochs=2):
-    # python求hessian矩阵比较困难，没做出来，故省略
-    pass
+
 
 if __name__ == '__main__':
     # 最小值=[0,0]
