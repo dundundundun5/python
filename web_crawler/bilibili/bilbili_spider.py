@@ -11,7 +11,7 @@ def get_cid_n_aid(bv):
     res = []
     # 在网页源代码中找视频的aid cid，经人工检验，第一个出现的就是所需答案
     for ch in ['a', 'c']:
-        regex = re.compile(f'\"{ch}id\":[0-9]*')
+        regex = re.compile(f'\"{ch}id\"[:][0-9]*')
         pos = re.search(regex, r.text)
         raw = r.text[pos.start():pos.end()]
         id = raw.split(":")[1]
@@ -207,10 +207,10 @@ def get_sub_replies_n_save(bv):
     print("全部完成！")
 
 if __name__ == '__main__':
-    bv = 'BV1Mv4y1o7Rf'
-    # get_root_replies_n_save(bv)
-    get_sub_replies_n_save(bv)
-    #get_comments_n_save(bv)
+    bv = 'BV1kh4y1W7yW'
+    #get_root_replies_n_save(bv)
+    #get_sub_replies_n_save(bv)
+    get_comments_n_save(bv)
     # import pandas as pd
     # file_c = f'D:/temp_files/{bv}_comments.csv'
     # file_r = f'D:/temp_files/{bv}_replies.csv'
