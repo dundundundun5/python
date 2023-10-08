@@ -1,15 +1,39 @@
+# "勤换cookie"
 import json
-PATH = "./中科院2022升级版/"
-SUBJECT = "计算机科学"
-def read_json(path):
-    f = open(path + '手动.json', 'r')
+PATH = "./中科院2022升级版/json/"
+FINAL_PATH = "./中科院2022升级版/results/"
+SUBJECTS = {"地球科学":470,
+            "物理与天体物理":323,
+            "数学":543,
+            "农林科学":702,
+            "材料科学":410,
+            "计算机科学":524,
+            "环境科学与生态学":400,
+            "化学":403,
+            "工程技术":1183,
+            "生物学":917,
+            "医学":3722,
+            "综合性期刊":63,
+            "法学":858,
+            "心理学":490,
+            "教育学":260,
+            "经济学":420,
+            "管理学":423,
+            "人文科学":444
+            }
+SUBJECT = ""
+YEAR = 2022
+urlencode_subject = ""
+PATH = "./中科院2022升级版/json"
+import os
+os.makedirs(FINAL_PATH, exist_ok=True)
+def read_json(path, subject):
+    f = open(f'{path}/{subject}.json', 'r')
     content = f.read()
     a = json.loads(content)
     result_json = []
     for i in range(len(a)):
-        
-        for j in range(len(a[i])):
-            result_json.append(a[i][j]) # a[i][j]['id']是我们要的id-期刊名
+        result_json.append(a[i]['Id'])
     # print(len(result_json))
     return result_json
 
@@ -19,9 +43,9 @@ def get_pages_by_id(id):
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36 Edg/117.0.2045.47",
     "Connection":"keep-alive",
     "Content-Type":"application/x-www-form-urlencoded; charset=UTF-8",
-    "Cookie": "Hm_lvt_bfa037370fbbd327cd70336871aea386=1696639957; Hm_lvt_0dae59e1f85da1153b28fb5a2671647f=1696640098; Hm_lpvt_0dae59e1f85da1153b28fb5a2671647f=1696640175; auth=10748E21932E558785CF16F5088024CC2ACC2F09541DA9912B659D6915700704D37D90E79311E5564E1AB890B25A3D11B7E3E6FCCE2C67DA8C0241CB2080D2D94A719FB79EA0FEB957A767CE32080544458221D248C65F31CFAA552AA439D164690C71840411DF5C54AF9FD945B7059C5C341058C22927D0EF4A34D94DB6529F0BEB08A7B47105ECC801BF082BA55D8A9D3CF86AA3400E8E45374D78493CEE764D1668BF53EB1998B466C2C7722AB295F51ABC5C7598970A3231E57C2DB2022299BFBE40AFD11CA303D1163D2158AD18D929702F3784A9D6EB4EC657AB8B36D81F0C222A241863CF94CAB435AFB95A6C817069ED391A01229C9D5C627C42A656244B42E9B51BCEBABC90A6177557FAFACFBEA9B6811496D2C22D10850436914439262B33F625189BB23EEBA6B9C61ACCA49F67AE5A406CD3C0AB6E0AEE529EDD477FB57C879DD063CE4C91A15FBD5A8C3333661F260CEE39E9CBFB2A691D22E7E1382976E25008FB022417131A99EECE29D2E83F3B954E35859135F00224BC3E5333D34BC5548D13C7BE1083037115947316A217C5F8FB102BF71B87428DEECC00547664CDFCFD906B74CE4566747D2810E35F103833E0A592D6EAB294D9758E; Hm_lpvt_bfa037370fbbd327cd70336871aea386=1696644227",
+    "Cookie": "Hm_lvt_bfa037370fbbd327cd70336871aea386=1696639957,1696743184; Hm_lvt_0dae59e1f85da1153b28fb5a2671647f=1696640098,1696743188; Hm_lpvt_0dae59e1f85da1153b28fb5a2671647f=1696743188; auth=53459D7F044D8737C78F3924D2610A2D1E73F8E12370AD0A298486EDB0CB5D6CB72E177EFA3E197675E3FE5604D22DC9C8C9396AB06A699B9366CCF4BEB9CF7D36FA69D7B599CE11436BFB8C22A9DAC87C829B4A27409DC67415E109FEAF105F66866E389B914DB08E2C50E66E8BD6320C29020AFDFF3BA6F73A5A29B710A6FD6FEA7F80E84277B67CF0CBA56363F404503E5ACB8F04598F7997D734F426BEC42862992AFE3D050DB8B3D0958FD82096F6B6DF4E976606D50C18EC7D1B4DD427B240A079A64E4726FE28FF27642F2AD0BFB8E8AD5CEF29A051EA16422AB56A2261A14F0D56ED6E97C42246A634AC414212A775221ACBF5A0C39ADC414FA2A8E56BFA12B7EB18D1F76DCB81D99EB60E270A9E7856B574D7B66B09FC259030BF41FF6B40C302F6B24D6456E8EEFE060FA5B43C209ADCC113F5245F297872F0924F15A7800034CC2289D7C3EF465B9B6204594E437F14A6F66294FA10FDBAAFC5EA9CB3478978A8B28DC9B4DD57F65F4B02E00E566D53567AE0C74941E143B0F7A8FC5D7013E98ABBA03CF33C60D7652792AA58FCAC46BDBF3B808ABB21AC48AFFC4CB4DEF3785A2F920F0036BB9353C3D4536B37395CA17E87FDFBD68A6ED14A6C; Hm_lpvt_bfa037370fbbd327cd70336871aea386=1696743664",
     "Host":"advanced.fenqubiao.com",
-    "Referer":"https://advanced.fenqubiao.com/Macro/Journal?name=%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6&year=2022",
+    "Referer":f"https://advanced.fenqubiao.com/Macro/Journal?name={urlencode_subject}&year={YEAR}",
     }
     import requests
     r = requests.get(url=url, headers=headers)
@@ -57,7 +81,6 @@ def get_info(t):
         name = tr.find_all("td")[0].get_text()
         value = tr.find_all("td")[1].get_text()  
         info[name] = value  
-    # print(info)
     tb2_tr = tb2.find_all("tr")
     res = {}
     lowest = 0
@@ -86,20 +109,21 @@ if __name__ == '__main__':
 
     import pandas as pd
     columns=["刊名","中科院ID","年份","分区","ISSN","综述","开放","最低档","学科信息"]
-    res_csv = []
-    result_json = read_json(PATH)
-    # print(result_json)
     
-    for i in range(len(result_json)):
-        zky_journal_id = result_json[i]['id']
-        t = get_pages_by_id(zky_journal_id)
-        info = get_info(t)
-        info["id"] = zky_journal_id
-        # print(info)
-        # 制作视图，重新整理数据
-        csv = [info["刊名"],info["id"],int(info["年份"]),info["分区"],info["ISSN"],info["Review"],info["Open Access"],info["最低档"],info["学科信息"]]
-        res_csv.append(csv)
-        print(csv)
-    res_csv = pd.DataFrame(res_csv, columns=columns)
-    print(res_csv.head())
-    res_csv.to_excel(PATH + "中科院2022升级版_爬虫初版.xlsx", index=False)
+    for key,value in SUBJECTS.items():
+        res_csv = []
+        SUBJECT = key
+        result_json = read_json(PATH, SUBJECT)
+        for i in range(len(result_json)):
+            zky_journal_id = result_json[i] - 9
+            t = get_pages_by_id(zky_journal_id)
+            info = get_info(t)
+            info["id"] = zky_journal_id
+            # 制作视图，重新整理数据
+            csv = [info["刊名"],info["id"],int(info["年份"]),info["分区"],info["ISSN"],info["Review"],info["Open Access"],info["最低档"],info["学科信息"]]
+            res_csv.append(csv)
+            print(csv)
+        res_csv = pd.DataFrame(res_csv, columns=columns)
+        print(res_csv.head())
+        res_csv.to_excel(f"{FINAL_PATH}/中科院2022升级版_{SUBJECT}.xlsx", index=False)
+        
