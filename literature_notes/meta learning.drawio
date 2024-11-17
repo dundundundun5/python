@@ -1,0 +1,163 @@
+<mxfile host="Electron" modified="2024-09-30T01:15:47.598Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.5.3 Chrome/124.0.6367.207 Electron/30.0.6 Safari/537.36" etag="AlOAqEhOipPhQRr2s5NA" version="24.5.3" type="device">
+  <diagram name="第 1 页" id="Mmt6za1OdRxTN2_uIVuW">
+    <mxGraphModel dx="592" dy="764" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1169" pageHeight="1654" math="1" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="hIz0siCk7fh1athTtJKb-3" value="" style="shape=curlyBracket;rounded=1;labelPosition=left;verticalLabelPosition=middle;align=right;verticalAlign=middle;direction=south;" parent="1" vertex="1">
+          <mxGeometry x="305" y="134" width="257" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="hIz0siCk7fh1athTtJKb-4" value="$$Tasks\rightarrow\theta$$" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;html=1;" parent="1" vertex="1">
+          <mxGeometry x="353" y="97" width="162" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="hIz0siCk7fh1athTtJKb-11" value="" style="rounded=0;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+          <mxGeometry x="284" y="-53" width="113" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="hIz0siCk7fh1athTtJKb-12" value="" style="rounded=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+          <mxGeometry x="430" y="-54" width="145" height="81" as="geometry" />
+        </mxCell>
+        <mxCell id="hIz0siCk7fh1athTtJKb-13" value="" style="rounded=0;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="593" y="-53.5" width="113" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="hIz0siCk7fh1athTtJKb-14" value="" style="shape=curlyBracket;rounded=1;labelPosition=left;verticalLabelPosition=middle;align=right;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="274" y="193" width="13" height="57" as="geometry" />
+        </mxCell>
+        <mxCell id="hIz0siCk7fh1athTtJKb-15" value="N类&#xa;K样本数" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="213" y="194" width="62" height="41" as="geometry" />
+        </mxCell>
+        <mxCell id="YcSjNkucrVoM031v3dmT-5" value="" style="rounded=0;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+          <mxGeometry x="305" y="193" width="85" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="YcSjNkucrVoM031v3dmT-6" value="" style="rounded=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+          <mxGeometry x="570" y="195" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="YcSjNkucrVoM031v3dmT-7" value="" style="shape=curlyBracket;rounded=1;flipH=1;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="410" y="195" width="20" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="YcSjNkucrVoM031v3dmT-8" value="$$Task_1梯度下降\theta\rightarrow\hat{\theta}_1$$" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;html=1;" parent="1" vertex="1">
+          <mxGeometry x="353" y="209" width="289" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="YcSjNkucrVoM031v3dmT-23" value="" style="shape=curlyBracket;rounded=1;flipH=1;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="709" y="193" width="20" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="YcSjNkucrVoM031v3dmT-25" value="$$\hat{\theta}_1\rightarrow loss_1$$" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;html=1;" parent="1" vertex="1">
+          <mxGeometry x="691" y="209" width="211" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="YcSjNkucrVoM031v3dmT-31" value="" style="rounded=0;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+          <mxGeometry x="305" y="273" width="85" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="YcSjNkucrVoM031v3dmT-32" value="" style="rounded=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+          <mxGeometry x="570" y="275" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="YcSjNkucrVoM031v3dmT-33" value="" style="shape=curlyBracket;rounded=1;flipH=1;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="410" y="275" width="20" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="YcSjNkucrVoM031v3dmT-34" value="$$Task_2梯度下降\theta\rightarrow\hat{\theta}_2$$" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;html=1;" parent="1" vertex="1">
+          <mxGeometry x="353" y="289" width="289" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="YcSjNkucrVoM031v3dmT-35" value="" style="shape=curlyBracket;rounded=1;flipH=1;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="709" y="273" width="20" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="YcSjNkucrVoM031v3dmT-36" value="$$\hat{\theta}_2\rightarrow loss_2$$" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;html=1;" parent="1" vertex="1">
+          <mxGeometry x="691" y="289" width="211" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="YcSjNkucrVoM031v3dmT-37" value="" style="rounded=0;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+          <mxGeometry x="305" y="354" width="85" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="YcSjNkucrVoM031v3dmT-38" value="" style="rounded=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+          <mxGeometry x="570" y="356" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="YcSjNkucrVoM031v3dmT-39" value="" style="shape=curlyBracket;rounded=1;flipH=1;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="410" y="356" width="20" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="YcSjNkucrVoM031v3dmT-40" value="$$Task_3梯度下降\theta\rightarrow\hat{\theta}_3$$" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;html=1;" parent="1" vertex="1">
+          <mxGeometry x="353" y="370" width="289" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="YcSjNkucrVoM031v3dmT-41" value="" style="shape=curlyBracket;rounded=1;flipH=1;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="709" y="354" width="20" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="YcSjNkucrVoM031v3dmT-42" value="$$\hat{\theta}_3\rightarrow loss_3$$" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;html=1;" parent="1" vertex="1">
+          <mxGeometry x="691" y="370" width="211" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="YcSjNkucrVoM031v3dmT-43" value="" style="shape=curlyBracket;rounded=1;labelPosition=left;verticalLabelPosition=middle;align=right;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="184" y="194" width="39" height="218" as="geometry" />
+        </mxCell>
+        <mxCell id="YcSjNkucrVoM031v3dmT-44" value="Fast Weight" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="110" y="289" width="82" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="YcSjNkucrVoM031v3dmT-45" value="$$+$$" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;html=1;" parent="1" vertex="1">
+          <mxGeometry x="787" y="249" width="52" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="YcSjNkucrVoM031v3dmT-46" value="$$+$$" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;html=1;" parent="1" vertex="1">
+          <mxGeometry x="787" y="330" width="52" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="YcSjNkucrVoM031v3dmT-47" value="" style="endArrow=classic;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="812.58" y="412" as="sourcePoint" />
+            <mxPoint x="812.58" y="455" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="YcSjNkucrVoM031v3dmT-48" value="$$\theta\leftarrow\theta-\nabla&amp;nbsp; Loss$$" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;html=1;" parent="1" vertex="1">
+          <mxGeometry x="703.5" y="466" width="223" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="YcSjNkucrVoM031v3dmT-49" value="" style="shape=curlyBracket;rounded=1;labelPosition=left;verticalLabelPosition=middle;align=right;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="739" y="461" width="16" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="YcSjNkucrVoM031v3dmT-51" value="Slow Weight" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="654" y="464" width="84" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="YcSjNkucrVoM031v3dmT-52" value="MAML" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="469" y="63" width="53" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="7oCJO-D9ezWXIG1Yo4mg-1" value="$$[\psi^t,\theta^t_1,\theta^t_2, \cdots,\theta^t_p]$$" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;html=1;" vertex="1" parent="1">
+          <mxGeometry x="133" y="497" width="285" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="7oCJO-D9ezWXIG1Yo4mg-4" value="$$\beta^t\gets \theta^t_a $$" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;html=1;" vertex="1" parent="1">
+          <mxGeometry x="304" y="534" width="165" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="7oCJO-D9ezWXIG1Yo4mg-5" value="" style="shape=curlyBracket;rounded=1;labelPosition=left;verticalLabelPosition=middle;align=right;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="194" y="538" width="20" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="7oCJO-D9ezWXIG1Yo4mg-6" value="元训练" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="146" y="577" width="54" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="7oCJO-D9ezWXIG1Yo4mg-8" value="$$T_a$$" style="rounded=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="293" y="536" width="40" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="7oCJO-D9ezWXIG1Yo4mg-9" value="$$\beta^{t+1}\gets \beta^t-元学习率\times \nabla_{\beta^t}[L(\psi^t,\beta^t)+正则化项R_{\phi}(\beta^t)]$$" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;html=1;" vertex="1" parent="1">
+          <mxGeometry x="110" y="571" width="567" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="7oCJO-D9ezWXIG1Yo4mg-12" value="&lt;font face=&quot;Times New Roman&quot;&gt;$$迭代至\beta^l$$&lt;/font&gt;" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;html=1;" vertex="1" parent="1">
+          <mxGeometry x="192" y="629" width="110" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="7oCJO-D9ezWXIG1Yo4mg-13" value="&lt;b&gt;$$R_{\phi}(\beta)=\sum_i\phi_i|\beta_i|$$&lt;/b&gt;" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;html=1;" vertex="1" parent="1">
+          <mxGeometry x="156" y="603" width="248" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="7oCJO-D9ezWXIG1Yo4mg-14" value="元测试" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="149" y="698" width="54" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="7oCJO-D9ezWXIG1Yo4mg-15" value="选择领域a" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;html=1;" vertex="1" parent="1">
+          <mxGeometry x="216" y="532" width="73" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="7oCJO-D9ezWXIG1Yo4mg-17" value="" style="shape=curlyBracket;rounded=1;labelPosition=left;verticalLabelPosition=middle;align=right;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="194" y="658.5" width="20" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="7oCJO-D9ezWXIG1Yo4mg-18" value="选择领域b" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="214" y="658.5" width="73" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="7oCJO-D9ezWXIG1Yo4mg-19" value="$$T_b$$" style="rounded=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="293" y="659.5" width="40" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="7oCJO-D9ezWXIG1Yo4mg-20" value="$$\phi^{t+1}\gets \phi^t-元学习率\times \nabla_{\phi^t}[L(\psi^t, \beta^l)]|_{\phi=\phi^t}$$" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;html=1;" vertex="1" parent="1">
+          <mxGeometry x="114" y="703" width="479" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="7oCJO-D9ezWXIG1Yo4mg-21" value="正则化项：共享了参数的加权和，从而实现分类网络对齐" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="219" y="742" width="318" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="7oCJO-D9ezWXIG1Yo4mg-22" value="这里作者没有细究以下函数是否可微" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="346" y="659.5" width="210" height="26" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

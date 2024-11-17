@@ -1,0 +1,52 @@
+<mxfile host="app.diagrams.net" modified="2024-04-29T09:29:34.382Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36 Edg/118.0.2088.46" etag="yBWppmLH0RaskOsNyuGv" version="24.0.3" type="device">
+  <diagram name="第 1 页" id="5JPAhsFmzIZHJoeETDiI">
+    <mxGraphModel dx="982" dy="532" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="u63C_uzWPPlKb7hjhXWZ-2" value="Text" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="439" y="312" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="u63C_uzWPPlKb7hjhXWZ-3" value="" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="229.5" y="304" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="u63C_uzWPPlKb7hjhXWZ-4" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="158" y="129" width="61" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="u63C_uzWPPlKb7hjhXWZ-5" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="259" y="129" width="61" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="u63C_uzWPPlKb7hjhXWZ-6" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="360" y="129" width="61" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="LQsUf2JtU3r-YKc1q-eS-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="LQsUf2JtU3r-YKc1q-eS-1" target="LQsUf2JtU3r-YKc1q-eS-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LQsUf2JtU3r-YKc1q-eS-1" value="&lt;font face=&quot;宋体&quot; style=&quot;font-size: 12px;&quot;&gt;&lt;b&gt;开始&lt;/b&gt;&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="289.5" y="548" width="59" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="LQsUf2JtU3r-YKc1q-eS-3" value="&lt;font face=&quot;宋体&quot; style=&quot;font-size: 12px;&quot;&gt;&lt;b&gt;结束&lt;/b&gt;&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="289.5" y="952" width="59" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="LQsUf2JtU3r-YKc1q-eS-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="LQsUf2JtU3r-YKc1q-eS-4" target="LQsUf2JtU3r-YKc1q-eS-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LQsUf2JtU3r-YKc1q-eS-4" value="&lt;span style=&quot;font-family: 宋体;&quot;&gt;&lt;font size=&quot;1&quot; style=&quot;&quot;&gt;&lt;b style=&quot;&quot;&gt;将公开的可穿戴传感器数据集按领域划分，并划分为滑动窗口&lt;/b&gt;&lt;/font&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="139" y="632" width="360" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LQsUf2JtU3r-YKc1q-eS-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="LQsUf2JtU3r-YKc1q-eS-5" target="LQsUf2JtU3r-YKc1q-eS-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LQsUf2JtU3r-YKc1q-eS-5" value="&lt;span style=&quot;font-family: 宋体;&quot;&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;&lt;b&gt;对每个滑动窗口，根据所有时间步的传感器数据，训练模型&lt;/b&gt;&lt;/font&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="139" y="741" width="360" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LQsUf2JtU3r-YKc1q-eS-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="LQsUf2JtU3r-YKc1q-eS-8" target="LQsUf2JtU3r-YKc1q-eS-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LQsUf2JtU3r-YKc1q-eS-8" value="&lt;span style=&quot;font-family: 宋体;&quot;&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;&lt;b&gt;根据训练好的模型对每个滑动窗口作分类任务，得到每个滑动窗口的人类行为预测向量，选择预测概率最高的行为作为最终的预测结果&lt;/b&gt;&lt;/font&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="139" y="849" width="360" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
