@@ -1,0 +1,39 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+# 假设你有三个baseline的准确率数据
+baseline_names = ['Baseline A', 'Baseline B', 'Baseline C']
+accuracy_data = {
+    'Baseline A': [0.85, 0.86, 0.87, 0.88, 0.89],
+    'Baseline B': [0.82, 0.84, 0.86, 0.88, 0.90],
+    'Baseline C': [0.80, 0.81, 0.83, 0.85, 0.87]
+}
+
+# 计算准确率的变化幅度
+accuracy_change = {name: np.diff(acc) for name, acc in accuracy_data.items()}
+
+# 绘制准确率曲线
+plt.figure(figsize=(10, 6))
+
+for name in baseline_names:
+    plt.plot(accuracy_data[name], label=f'{name} Accuracy', marker='o')
+
+plt.xlabel('Epochs')
+plt.ylabel('Accuracy')
+plt.title('Accuracy Comparison between Baselines')
+plt.legend()
+plt.grid(True)
+plt.show()
+
+# 绘制准确率变化幅度曲线
+plt.figure(figsize=(10, 6))
+
+for name in baseline_names:
+    plt.plot(accuracy_change[name], label=f'{name} Accuracy Change', marker='o')
+
+plt.xlabel('Epochs')
+plt.ylabel('Accuracy Change')
+plt.title('Accuracy Change Comparison between Baselines')
+plt.legend()
+plt.grid(True)
+plt.show()
