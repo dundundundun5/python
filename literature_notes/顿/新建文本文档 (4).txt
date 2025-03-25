@@ -1,1 +1,0 @@
-.\b.exe .\a.dll Palworld-Win64-Shipping.exe
